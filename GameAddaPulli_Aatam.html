@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />   
+    <style>
+        .Goat {
+            width: 40px;
+            height: 40px;
+        }
+        
+        li {
+	margin: 0;
+	padding: 5px 20px 5px 25px;
+	list-style: none;
+	background-image: url("images/Butto.png");
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-size: 20px;
+}
+        h1{
+            color:#D56E19  ;
+        }
+
+            .Goat:hover, .Tiger :hover, .Empty :hover {
+                background-color: brown;
+            }
+        body{
+            background-image: url('images/GAMEBG.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        p{
+            color: burlywood;
+        }
+        h3{
+      
+      font-family: futura;
+      font-style: italic;     
+      color:#313131;
+      font-size:20px;
+      font-weight: bold;
+      position: absolute;
+      -webkit-animation:colorchange 20s infinite alternate;
+      
+      
+    }
+
+    @-webkit-keyframes colorchange {
+      0% {
+        
+        color: greenyellow;
+      }
+      
+      10% {
+        
+        color: #8e44ad;
+      }
+      
+      20% {
+        
+        color: #1abc9c;
+      }
+      
+      30% {
+        
+        color: #d35400;
+      }
+      
+      40% {
+        
+        color: blue;
+      }
+      
+      50% {
+        
+        color: #34495e;
+      }
+      
+      60% {
+        
+        color: blue;
+      }
+      
+      70% {
+        
+        color: #2980b9;
+      }
+      80% {
+     
+        color: #f1c40f;
+      }
+      
+      90% {
+     
+        color: #2980b9;
+      }
+      
+      100% {
+        
+        color: pink;
+      }
+    }
+    </style>    
+    <script src="js/Gameplay.js"></script>
+    <script src="js/TigersAndGoats.js"></script>
+    <script>
+        window.onload = function () {
+                window.currentGameState = new GameState();                
+                window.selectedId = -1;
+                window.MoveHistory = new HistoryStack();
+                UpdateUserInterface();
+        }
+    </script>
+</head>
+<body> 
+        <div>
+        <table>
+            <tr>
+                <th align="center" style="padding-left:20px">
+                    <marquee direction="up" behavior="alternate" style="height:100px"><h1>AADU PULI AATAM ( Tiger and Goats Game)</h1></marquee>
+                    
+                </th>
+                <th align="left">                    
+                </th>
+            </tr>
+            <tr><td>
+                    <div style="position:relative">
+                    <img src="images/Board.png" style="width:500px; height:400px; z-index:5" />                    
+                    <img id="100" class="Goat" src="images/Goat.png" style="position:absolute; top:10px; right:550px; z-index:10;" />
+                    <label style="position:absolute; z-index:20; top:60px; right:550px; width:40px; height:40px; font-family:Arial; font-size:32px; color:greenyellow;" id="OutSideGoats"></label>
+                    <img onclick="ProcessUserInput(this)" id="0" class="Goat" src="images/Goat.png" style="position:absolute; top:-11px; left:231px; z-index:10; "draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="1" class="Goat" src="images/Goat.png" style="position:absolute; top:129px; left:24px; z-index:10;" draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="2" class="Goat" src="images/Goat.png" style="position:absolute; top:129px; left:148px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="3" class="Goat" src="images/Goat.png" style="position:absolute; top:129px; left:204px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="4" class="Goat" src="images/Goat.png" style="position:absolute; top:129px; left:261px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="5" class="Goat" src="images/Goat.png" style="position:absolute; top:129px; left:310px; z-index:10;" draggable="true" ondragstart="drag(event)"/>
+                    <img onclick="ProcessUserInput(this)" id="6" class="Goat" src="images/Goat.png" style="position:absolute; top:129px; left:435px; z-index:10;" draggable="true" ondragstart="drag(event)"/>
+                    <img onclick="ProcessUserInput(this)" id="7" class="Goat" src="images/Goat.png" style="position:absolute; top:191px; left:24px; z-index:10;" draggable="true" ondragstart="drag(event)"/>
+                    <img onclick="ProcessUserInput(this)" id="8" class="Goat" src="images/Goat.png" style="position:absolute; top:191px; left:116px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="9" class="Goat" src="images/Goat.png" style="position:absolute; top:191px; left:193px; z-index:10;" draggable="true" ondragstart="drag(event)"/>
+                    <img onclick="ProcessUserInput(this)" id="10" class="Goat" src="images/Goat.png" style="position:absolute; top:191px; left:275px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="11" class="Goat" src="images/Goat.png" style="position:absolute; top:191px; left:342px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="12" class="Goat" src="images/Goat.png" style="position:absolute; top:191px; left:440px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="13" class="Goat" src="images/Goat.png" style="position:absolute; top:253px; left:24px; z-index:10;" draggable="true" ondragstart="drag(event)"/>
+                    <img onclick="ProcessUserInput(this)" id="14" class="Goat" src="images/Goat.png" style="position:absolute; top:253px; left:85px; z-index:10;" draggable="true" ondragstart="drag(event)"/>
+                    <img onclick="ProcessUserInput(this)" id="15" class="Goat" src="images/Goat.png" style="position:absolute; top:253px; left:183px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="16" class="Goat" src="images/Goat.png" style="position:absolute; top:253px; left:289px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="17" class="Goat" src="images/Goat.png" style="position:absolute; top:253px; left:376px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="18" class="Goat" src="images/Goat.png" style="position:absolute; top:253px; left:435px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="19" class="Goat" src="images/Goat.png" style="position:absolute; top:370px; left:20px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="20" class="Goat" src="images/Goat.png" style="position:absolute; top:370px; left:160px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="21" class="Goat" src="images/Goat.png" style="position:absolute; top:370px; left:313px; z-index:10;"draggable="true" ondragstart="drag(event)" />
+                    <img onclick="ProcessUserInput(this)" id="22" class="Goat" src="images/Goat.png" style="position:absolute; top:370px; left:440px; z-index:10;" draggable="true" ondragstart="drag(event)"/>
+                    </div>
+                    
+                    <div id="9" ondrop="drop(event)"  style="position:absolute; top:-11px; left:231px; z-index:10;" ondragover="allowDrop(event)"></div>
+                </td>
+                <td valign="top" style="width:600px">
+                    <table>
+                        <tr>
+                            <td>
+                            <p> <img id="100" class="Goat" src="images/Goat.png" style="position:absolute; top:110px; left:820px; z-index:10; " />
+                                <img id="100" class="Goat" src="images/Tiger.png" style="position:absolute; top:110px; left:680px; z-index:10;" /></p><br />
+                                <p>Pulli(Tiger)      &ensp;   &ensp; &ensp; &ensp; &ensp;     Aadu(Goat)</p>
+                               
+                               <p>Side to move: <span id="SideToMove">Tiger</span></p>
+                                <p>Game Status: <span id="Status"></span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               <p> Game Type:  <select   style ="background-color: honeydew" id="ComputerSide" onchange="changeGameType(this)">
+                                                <optgroup label="Computer plays as:">
+                                                    <option value="tigers">Computer plays as tigers</option>
+                                                    <option value="goats">Computer plays as goats</option>                                                    
+                                                </optgroup>
+                                            </select></p>                               
+                            </td>    
+                        </tr>
+                        <tr>
+                            <td style="width:300px">                               
+                                <br />    
+                               
+                            </td>
+                            <td style="width:300px">
+                                <br />               
+                               
+                            </td>
+                        </tr>
+                    </table>                  
+                    <button style="background-color:greenyellow;" onclick="startGame()" id="StartButton" type="button">Lets Play!</button>
+                    <button onclick="moveBack()" id="MoveBackButton" type="button">&lt;</button>
+                    <button style="background-color:goldenrod;"onclick="moveNow()" id="MoveNowButton" type="button">Move Now!</button>
+                    <button onclick="moveForward()" id="MoveForwardButton" type="button">&gt;</button>
+                    <button style="background-color: brown;"onclick="stopGame()" id="StopButton" type="button">Take a pause</button>
+                    <button style="background-color: burlywood;" onclick="resetGame()" id="ResetButton" type="reset">Reset Me</button><br/>
+                   <h3 style="color:greenyellow">How to Play:</h3><br /><br />
+<p><ul style="color:burlywood">
+  <li>Start the game and select the points on the board to drag  the Goat to make a move to any specified position in the board </li>
+    <li>A board with game board is shown , 3 Pulli’s (tigers ) are visible and 15 Aadu’s (goats) are hidden on clicking on goats turn it will appear.</li>
+    <li>There are 23 intersection spots on the board for moving the aadu and puli pieces.</li> 
+    <li>The puli pieces are bigger than the Aadu pieces. To set the game, the puli pieces and Aadu pieces are arranged on the board.</li> 
+    <li> One pulli is placed on the apex and the other 2 are placed on the inner positions closest to the apex.</li>
+    <li>All the Aadus start off the board.</li> 
+<li>Aadus can move only after all the 15 have been put on the board.</li>
+<li> The Pulis starts capturing one Aadu at a time in a turn, as soon as the game begins by jumping over to an adjacent free position.</li>
+<li> The Aadus leave the board as soon as they are captured.</li>
+<li> The Pulis win if 5 or more Aadus are captured and the Aadus win if they have blocked the movement of the Pulis.</li></ul></p>
+ </td>               
+            </tr>  
+           
+        </table>
+        
+    </div>
+</html>
